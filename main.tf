@@ -1,3 +1,8 @@
+locals {
+  name_prefix = terraform.workspace == "default" ? "" : "${terraform.workspace}-"
+  name        = "${name_prefix}${var.project.name}-${var.name}"
+}
+
 terraform {
   required_version = ">= 0.12"
 }
