@@ -1,6 +1,6 @@
 locals {
   name_prefix = terraform.workspace == "default" ? "" : "${terraform.workspace}-"
-  name        = "${name_prefix}${var.project.name}-${var.name}"
+  name        = "${local.name_prefix}${var.project.name}-${var.name}"
 }
 
 terraform {
@@ -11,6 +11,6 @@ terraform {
  * The ECR repository.
  */
 resource "aws_ecr_repository" "main" {
-  name = var.name
+  name = local.name
   tags = var.project.tags
 }
